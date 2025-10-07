@@ -37,3 +37,28 @@ const newArrayForPolyfill = array.ankitImplementationForReduce(
 );
 
 console.log("Sum using Reduce Polyfill: ", newArrayForPolyfill);
+
+console.log("===========================================================================");
+
+const newAnkitArray = [1, 2, 3, 4, 5];
+
+const reducedNewAnkitArray = newAnkitArray.reduce((acc, curr, index, arr) => {
+  return acc+curr;
+})
+
+console.log(reducedNewAnkitArray);
+
+Array.prototype.reducedNewAnkitArrayPoly = function (cb, initialAccumulatorValue) {
+  
+  let result = initialAccumulatorValue;
+
+  for(let i = 0;i<this.length;i++) {
+    result = result ? cb(result, this[i], i, this) : this[i];
+  }
+
+  return result;
+}
+const resultOfPoly = newAnkitArray.reducedNewAnkitArrayPoly((acc, curr, index, arr) => {
+  return acc+curr;
+}, 0)
+console.log(resultOfPoly)
